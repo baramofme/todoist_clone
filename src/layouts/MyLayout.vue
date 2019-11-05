@@ -1,15 +1,19 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          icon="menu"
-          aria-label="Menu"
-        />
+  <div class="row justify-center">
+    <div class="col-sm-12 col-md-10">
+
+      <q-layout
+        view="hhh lpr lFf">
+        <q-header elevated>
+          <q-toolbar>
+            <q-btn
+              flat
+              dense
+              round
+              @click="leftDrawerOpen = !leftDrawerOpen"
+              icon="menu"
+              aria-label="Menu"
+            />
 
         <q-toolbar-title>
           투두이스트 클론
@@ -86,10 +90,12 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-  </q-layout>
+        <q-page-container>
+          <router-view />
+        </q-page-container>
+      </q-layout>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -100,6 +106,15 @@ export default {
     return {
       leftDrawerOpen: false
     }
-  }
+  },
+    computed: {
+        isOverLay(){
+            // this.$q.screen.setDebounce
+            if(this.$q.screen.lt.sm){
+                console.log('화면 넓이 ', this.$q.screen.width);
+                return this.$q.screen.width-20
+            }
+        }
+    }
 }
 </script>
